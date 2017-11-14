@@ -10,3 +10,7 @@
 .select2-multiple {
     width: 100%;
 }
+
+#bottom-nav-bar a {
+  color: white;
+}

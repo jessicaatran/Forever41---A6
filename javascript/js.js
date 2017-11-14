@@ -22,6 +22,7 @@ function getName() {
     "profilePic": "",
     "conditions": []
   };
+
   console.log(JSON.stringify(person));
   // alert('pushing: ' + JSON.stringify(person));
   // alert('users: ' + JSON.stringify(users));
@@ -68,7 +69,7 @@ function getBirth() {
   var day = document.getElementById('day').value;
   var year = document.getElementById('year').value;
   var birthdate = month + "/" + day + "/" + year;
-  // alert(birthdate); 
+  // alert(birthdate);
 
   console.log('the user', users[users.length - 1]);
   users[users.length - 1].birthday = birthdate;
@@ -85,7 +86,7 @@ function renderConditions() {
       var $div = $('<div/>', {
         class: 'card text-center',
         id: (conditions[i] + '').replace(/ /g, '-'),
-        rel: 'external', 
+        rel: 'external',
 
       }).html('<div class="card text-center"><div class="card-body"><h4 class="card-title">' + conditions[i] + '</h4></div></div>');
       $($div).insertBefore($('#add'));
@@ -115,7 +116,7 @@ function getConditions() {
 
       users[users.length - 1].conditions = selectedCondition.split(",");
       localStorage.setItem('users', JSON.stringify(users));
-    } 
+    }
     else {
       var conditions = localStorage.getItem('conditions') + ','+ selectedCondition;
       localStorage.setItem('conditions', conditions);
