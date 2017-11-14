@@ -13,16 +13,15 @@ function getName() {
   var first = document.getElementById('userFirstName').value;
   var last = document.getElementById('userLastName').value;
   var fullName = first + " " + last;
-  var person = 
-    {
-      "name": fullName,
-      "email": "",
-      "password": "",
-      "gender": "",
-      "birthday": "",
-      "profilePic": "",
-      "conditions": []
-    };
+  var person = {
+    "name": fullName,
+    "email": "",
+    "password": "",
+    "gender": "",
+    "birthday": "",
+    "profilePic": "",
+    "conditions": []
+  };
   console.log(JSON.stringify(person));
   // alert('pushing: ' + JSON.stringify(person));
   // alert('users: ' + JSON.stringify(users));
@@ -78,11 +77,9 @@ function getBirth() {
 }
 
 function renderConditions() {
-  if (localStorage.getItem('conditions')) {
-    console.log("LocalStorage: ", localStorage.getItem('conditions'));
-    var conditions = (lo
-      calStorage.getItem('conditions') + '').split(',');
-    console.log(conditions);
+  var conditions = users[users.length - 1].conditions;
+
+  if (conditions) {
     for (var i = 0; i < conditions.length; i++) {
       console.log(conditions[i]);
       var $div = $('<div/>', {
@@ -94,6 +91,7 @@ function renderConditions() {
       $($div).insertBefore($('#add'));
     }
   }
+
   $('#overview').click(function(){
     window.location.href = './overview.html';
   });
