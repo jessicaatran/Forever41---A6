@@ -29,13 +29,28 @@
         <input type="text" class="form-control" id="userLastName" placeholder="Enter last name">
       </div>
         <a class="btn btn-outline-dark float-left" href="./index.html" role="button">Back</a>
-        <a class="btn btn-outline-dark float-right" href="./join_email.html" role="button">Next</a>
+        <a class="btn btn-outline-dark float-right" role="button" onclick="getName()">Next</a>
     </form>
 
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
     <script src="./javascript/js.js"></script>
+
+    <!-- <script>
+      var users = [];
+
+      function getName() {
+        alert('hi');
+        var first = document.getElementById('userFirstName').value;
+        var last = document.getElementById('userLastName').value;
+        var person = {name: first + " " + last};
+        users.append(person);
+        console.log(JSON.stringify(person));
+        localStorage.setItem('user', JSON.stringify(person));
+        console.log(localStorage);
+      }
+    </script> -->
 
   </body>
 </html>
