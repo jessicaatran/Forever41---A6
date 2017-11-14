@@ -1,4 +1,7 @@
 var users;
+var userIndex;
+var newUser = true;
+
 if (localStorage.getItem('users') === null) {
   console.log('empty: ' + JSON.stringify(localStorage));
   users = [];
@@ -10,6 +13,7 @@ if (localStorage.getItem('users') === null) {
 // alert('users: ' + JSON.stringify(users));
 
 function getName() {
+
   var first = document.getElementById('userFirstName').value;
   var last = document.getElementById('userLastName').value;
   var fullName = first + " " + last;
@@ -29,6 +33,10 @@ function getName() {
   users.push(person);
   localStorage.setItem('users', JSON.stringify(users));
   console.log('localStorage: ' + localStorage);
+
+  // If new user
+  userIndex = users.length - 1;
+  alert(userIndex);
   window.location.href = './join_email.html';
 }
 
@@ -107,20 +115,41 @@ function renderConditions() {
   });
 }
 
+// TODO: change this to use only userIndex
 function getConditions() {
-  var selectedCondition = $('#select2-conditions').select2('val') + '';
+  var selectedCondition = $('#select2-conditions').val() + '';
 
-  if (selectedCondition) {
-    if (localStorage.getItem('conditions') === null) {
-      localStorage.setItem('conditions', selectedCondition);
+  if (selectedCondition && (selectedCondition.length !== 0)) {
+    var conditions = users[users.length - 1].conditions;
+    alert("conditions: " + conditions);
+
+    if (conditions === null || conditions.length === 0) {
+      // localStorage.setItem('conditions', selectedCondition);
+      // localStorage.setItem('users', conditions);
+      alert(selectedCondition);
+      alert(selectedCondition.split(","));
 
       users[users.length - 1].conditions = selectedCondition.split(",");
       localStorage.setItem('users', JSON.stringify(users));
     }
     else {
-      var conditions = localStorage.getItem('conditions') + ','+ selectedCondition;
-      localStorage.setItem('conditions', conditions);
-      users[users.length - 1].conditions = conditions.split(",");
+      // var conditions = localStorage.getItem('conditions') + ','+ selectedCondition;
+      alert("not null");
+      alert(selectedCondition);
+      alert(selectedCondition.split(","));
+
+      selectedCondition.split(",").forEach(function(condition) {
+        conditions.push(condition);
+      });
+      // conditions.push(selectedCondition.split(","));
+
+      alert("Conditionssss: " + conditions);
+
+      users[users.length - 1].conditions = conditions;
+
+      alert(JSON.stringify(users));
+      // localStorage.setItem('conditions', conditions);
+      // users[users.length - 1].conditions = conditions.split(",");
       localStorage.setItem('users', JSON.stringify(users));
     }
     window.location.href = './dashboard.html';
@@ -156,10 +185,11 @@ $('#setting').click(function(){
 
 $('#help').click(function(){
   window.location.href = './help.html';
+  localStorage.clear();
 });
 
 $('.fa-sign-out').click(function() {
   window.location.href = './index.html';
-  console.log('clear local storage');
-  localStorage.clear();
+  // console.log('clear local storage');
+  // localStorage.clear();
 });
