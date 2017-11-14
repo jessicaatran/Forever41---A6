@@ -50,31 +50,27 @@
     <div class="col-sm-12">
       <br>
       <a class="btn btn-outline-dark float-left" href="./join_profilepic.html" role="button">Back</a>
-      <a class="btn btn-outline-dark float-right" id="finish" href="./dashboard.html" role="button">Finish</a>
+      <a class="btn btn-outline-dark float-right" id="finish" role="button">Finish</a>
     </div>
     <script type="text/javascript">
         $(document).ready(function() {
           console.log('hello');
-          $('.select2-multiple').select2();
+          $('#select2-conditions').select2();
         });
         $('#finish').click(function() {
-         var addConditions = $('.select2-multiple').select2("val") + '';
-          console.log("Selected value is: ", addConditions);
-          if (addConditions) {
-            if (localStorage.getItem('addConditions')) {
-              localStorage.setItem('addConditions', localStorage.getItem('addConditions') + ','+ addConditions);
-            } else {
-              localStorage.setItem('addConditions', addConditions);
-            }
-            window.location.href = './dashboard.html';
-          } else {
-            alert('No condition selected!');
-          }
+          getConditions();
         });
     </script>
 
     <script src="./javascript/js.js"></script>
 
-
+<!-- var users;
+if (localStorage.getItem('users') === null) {
+  console.log('empty: ' + JSON.stringify(localStorage));
+  users = [];
+} else {
+  users = JSON.parse(localStorage.getItem('users'));
+  console.log('hi, not empty:' + JSON.stringify(localStorage));
+} -->
 </body>
 </html>

@@ -79,18 +79,7 @@
         });
 
         $('#submit').click(function() {
-          var addConditions = $('.select2-multiple').select2("val") + '';
-          console.log("Selected value is: ", addConditions);
-          if (addConditions) {
-            if (localStorage.getItem('addConditions')) {
-              localStorage.setItem('addConditions', localStorage.getItem('addConditions') + ','+ addConditions);
-            } else {
-              localStorage.setItem('addConditions', addConditions);
-            }
-            window.location.href = './dashboard.html';
-          } else {
-            alert('No condition selected!');
-          }
+         getConditions();
         });
     </script>
 
