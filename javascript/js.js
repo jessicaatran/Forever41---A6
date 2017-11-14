@@ -170,6 +170,24 @@ $('#High-Blood-Pressure').click(function(){
 $('#Diabetes').click(function(){
   window.location.href = './diabetes.html';
 });
+$('#Anemia').click(function(){
+  window.location.href = './anemia.html';
+});
+$('#Back-Pain').click(function(){
+  window.location.href = './backpain.html';
+});
+$('#Cholesterol').click(function(){
+  window.location.href = './cholesterol.html';
+});
+$('#Dementia').click(function(){
+  window.location.href = './dementia.html';
+});
+$('#Fatigue').click(function(){
+  window.location.href = './faigue.html';
+});
+$('#Ulcers').click(function(){
+  window.location.href = './ulcers.html';
+});
 
 $('#back-join').click(function(){
   window.history.back();
