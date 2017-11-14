@@ -1,0 +1,12 @@
+#one, #two, #add {
+    display: inline-block;
+    width: 100%;
+}
+
+#condition-heading {
+  text-align: center;
+}
+
+.select2-multiple {
+    width: 100%;
+}

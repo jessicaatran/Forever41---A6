@@ -1,0 +1,89 @@
+<!-- login to existing account: enter email and password -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>my page xd</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/css/bootstrap.min.css" integrity="sha384-PsH8R72JQ3SOdhVi3uxftmaW6Vc51MKb0q5P2rRUpPvrszuE4W1povHYgTpBfshb" crossorigin="anonymous">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <link href="./css/style.css" rel="stylesheet">
+  </head>
+  <body>
+    <!-- header -->
+    <nav class="navbar navbar-light bg-light">
+      <span class="navbar-brand mb-0 h1">Profile</span>
+      <span style="float:right;"><i class="fa fa-sign-out" aria-hidden="true"></i>
+      <i id="help" class="fa fa-question-circle" type="button" data-toggle="modal" data-target="#helpModal" aria-hidden="true"></i></span>
+    </nav>
+
+    <div class=col-sm-12>
+      <img src="images/cat_icon.jpg" class="img-fluid">
+      <br><br>
+      <h7 id='name'>Name: Daniel Zhang</h7> <br>
+      <h7 id='bday'>Birthday: 10/08/1977</h7><br>
+      <h7 id='gender'>Gender: M</h7><br>
+      <h7 id='email'>Email: dzkaiten@gmail.com</h7><br>
+      <a class="btn btn-outline-dark float-left" href="./edit_prof.html" role="button">Edit Profile</a>
+      <br>
+      <br>
+      <h6>My Conditions:</h6>
+      <ul id='my-conditions'>
+      </ul>
+      <a class="btn btn-outline-dark float-left" href="./conditions.html" role="button">Edit Conditions</a>
+      <br>
+    </div>
+
+
+
+    <!-- bottom nav bar -->
+    <ul class="nav justify-content-center fixed-bottom">
+      <li class="nav-item">
+        <a class="nav-link active" href="dashboard.html">Dashboard</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="./profile.html">Profile</a>
+      </li>
+    </ul>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+    <script src="./javascript/js.js"></script>
+
+    <script>
+      $(document).ready(function() {
+        console.log(localStorage);
+        if (localStorage.getItem('name')) {
+          document.getElementById('name').innerHTML = 'Name: ' + localStorage.getItem('name');
+        }
+        if (localStorage.getItem('bday')) {
+          document.getElementById('bday').innerHTML = 'Birthday: ' + localStorage.getItem('bday');
+        }
+        if (localStorage.getItem('gender')) {
+          var gender = localStorage.getItem('gender') + '';
+          document.getElementById('gender').innerHTML = 'Gender: ' + gender.charAt(0).toUpperCase() + gender.slice(1);
+        }
+        if (localStorage.getItem('email')) {
+          document.getElementById('email').innerHTML = 'Email: ' + localStorage.getItem('email');
+        }
+
+        if (localStorage.getItem('addConditions')) {
+          console.log("LocalStorage: ", localStorage.getItem('addConditions'));
+          var conditions = (localStorage.getItem('addConditions') + '').split(',');
+          console.log(conditions);
+          for (var i = 0; i < conditions.length; i++) {
+            console.log(conditions[i]);
+            var $cond = $('<li/>', {
+          }).text(conditions[i]);
+          $('#my-conditions').append($cond);
+          }
+        }
+
+      });
+    </script> 
+
+
+
+  </body>
+  </html>
