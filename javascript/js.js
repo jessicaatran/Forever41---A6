@@ -2,12 +2,30 @@ var users;
 var userIndex;
 var newUser = true;
 
+var selectedUser;
+
 if (localStorage.getItem('users') === null) {
   console.log('empty: ' + JSON.stringify(localStorage));
   users = [];
 } else {
   users = JSON.parse(localStorage.getItem('users'));
   console.log('hi, not empty:' + JSON.stringify(localStorage));
+}
+
+function userLogin() {
+  var email = document.getElementById('loginEmail').value;
+  var pass = document.getElementById('loginPass').value;
+
+  var allUsers = JSON.parse(localStorage.getItem('users'));
+  console.log('All users: ' + JSON.stringify(allUsers));
+
+  for (var i = 0; i < allUsers.length; i++) {
+    if (allUsers[i].email === email && allUsers[i].password === pass) {
+      selectedUser = allUsers[i];
+      alert('The selected user is: ' + JSON.stringify(selectedUser));
+      window.location.href = './dashboard.html';
+    }
+  }
 }
 
 // alert('users: ' + JSON.stringify(users));
@@ -35,8 +53,8 @@ function getName() {
   console.log('localStorage: ' + localStorage);
 
   // If new user
-  userIndex = users.length - 1;
-  alert(userIndex);
+  selectedUser = users[users.length - 1];
+  alert('New user! Selected user is at users.length - 1: ' + JSON.stringify(selectedUser));
   window.location.href = './join_email.html';
 }
 
