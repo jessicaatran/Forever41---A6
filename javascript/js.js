@@ -7,7 +7,7 @@ if (localStorage.getItem('users') === null) {
   console.log('hi, not empty:' + JSON.stringify(localStorage));
 }
 
-alert('users: ' + JSON.stringify(users));
+//alert('users: ' + JSON.stringify(users));
 
 function getName() {
   var first = document.getElementById('userFirstName').value;
