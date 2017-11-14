@@ -104,15 +104,45 @@ function renderConditions() {
   $('#overview').click(function(){
     window.location.href = './overview.html';
   });
+  
   $('#add').click(function(){
     window.location.href = './conditions.html';
   });
-  $('#High-Blood-Pressure').click(function(){
-    window.location.href = './highbp.html';
+
+  $('#Anemia').click(function(){
+    window.location.href = './anemia.html';
   });
+  $('#Arthritis').click(function(){
+    window.location.href = './arthritis.html';
+  });
+  $('#Back-Pain').click(function(){
+    window.location.href = './backpain.html';
+  });
+  $('#Cholesterol').click(function(){
+    window.location.href = './cholesterol.html';
+  });
+
+  $('#Dementia').click(function(){
+    window.location.href = './dementia.html';
+  });
+
   $('#Diabetes').click(function(){
     window.location.href = './diabetes.html';
   });
+
+  $('#Fatigue').click(function(){
+    window.location.href = './fatigue.html';
+  });
+
+  $('#High-Blood-Pressure').click(function(){
+    window.location.href = './highbp.html';
+  });
+
+  $('#Ulcers').click(function(){
+    window.location.href = './ulcers.html';
+  });
+
+   
 }
 
 // TODO: change this to use only userIndex
