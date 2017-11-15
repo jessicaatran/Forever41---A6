@@ -1,3 +1,15 @@
+body {
+  font-family: 'Roboto', sans-serif;
+  /*background: linear-gradient(to bottom left, #a5cbcc 0%, #52b7cd 100%);*/
+}
+
+#navbar {
+  /*background-color: #52b7cd;*/
+  background: linear-gradient(to top right, #68c3d2, #a5cbcc); /* Standard syntax */
+  color: white;
+  font-family: 'Open Sans', sans-serif;
+}
+
 #one, #two, #add {
     display: inline-block;
     width: 100%;
