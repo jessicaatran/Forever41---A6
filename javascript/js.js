@@ -116,6 +116,49 @@ function getBirth() {
   window.location.href = './join_profilepic.html';
 }
 
+// TODO: change this to use only userIndex
+function getConditions() {
+  var selectedCondition = $('#select2-conditions').val() + '';
+
+  if (selectedCondition && (selectedCondition.length !== 0)) {
+    var conditions = users[userIndex].conditions;
+    alert("conditions: " + conditions);
+
+    if (conditions === null || conditions.length === 0) {
+      // localStorage.setItem('conditions', selectedCondition);
+      // localStorage.setItem('users', conditions);
+      alert(selectedCondition);
+      alert(selectedCondition.split(","));
+
+      users[userIndex].conditions = selectedCondition.split(",");
+      localStorage.setItem('users', JSON.stringify(users));
+    }
+    else {
+      // var conditions = localStorage.getItem('conditions') + ','+ selectedCondition;
+      alert("not null");
+      alert(selectedCondition);
+      alert(selectedCondition.split(","));
+
+      selectedCondition.split(",").forEach(function(condition) {
+        conditions.push(condition);
+      });
+      // conditions.push(selectedCondition.split(","));
+
+      alert("Conditionssss: " + conditions);
+
+      users[userIndex].conditions = conditions;
+
+      alert(JSON.stringify(users));
+      // localStorage.setItem('conditions', conditions);
+      // users[userIndex].conditions = conditions.split(",");
+      localStorage.setItem('users', JSON.stringify(users));
+    }
+    window.location.href = './dashboard.html';
+  } else {
+    alert('No condition selected!');
+  }
+}
+
 function renderConditions() {
   console.log('renderConditions()');
   console.log('userIndex: ' + userIndex);
@@ -180,47 +223,50 @@ function renderConditions() {
 
 }
 
-// TODO: change this to use only userIndex
-function getConditions() {
-  var selectedCondition = $('#select2-conditions').val() + '';
+function displayProfile() {
+    console.log(localStorage);
+    console.log(users[userIndex].name);
+    document.getElementById('name').innerHTML = 'Name: ' + users[userIndex].name;
+    document.getElementById('bday').innerHTML = 'Birthday: ' + users[userIndex].birthday;
+    document.getElementById('gender').innerHTML = 'Gender: ' + users[userIndex].gender;
+    document.getElementById('email').innerHTML = 'Email: ' + users[userIndex].email;
 
-  if (selectedCondition && (selectedCondition.length !== 0)) {
-    var conditions = users[userIndex].conditions;
-    alert("conditions: " + conditions);
+    var myConditions = users[userIndex].conditions;
 
-    if (conditions === null || conditions.length === 0) {
-      // localStorage.setItem('conditions', selectedCondition);
-      // localStorage.setItem('users', conditions);
-      alert(selectedCondition);
-      alert(selectedCondition.split(","));
-
-      users[userIndex].conditions = selectedCondition.split(",");
-      localStorage.setItem('users', JSON.stringify(users));
+    for (var i = 0; i < myConditions.length; i++) {
+      $("<li />").html(myConditions[i]).appendTo($('#my-conditions'));
     }
-    else {
-      // var conditions = localStorage.getItem('conditions') + ','+ selectedCondition;
-      alert("not null");
-      alert(selectedCondition);
-      alert(selectedCondition.split(","));
 
-      selectedCondition.split(",").forEach(function(condition) {
-        conditions.push(condition);
-      });
-      // conditions.push(selectedCondition.split(","));
 
-      alert("Conditionssss: " + conditions);
 
-      users[userIndex].conditions = conditions;
 
-      alert(JSON.stringify(users));
-      // localStorage.setItem('conditions', conditions);
-      // users[userIndex].conditions = conditions.split(",");
-      localStorage.setItem('users', JSON.stringify(users));
-    }
-    window.location.href = './dashboard.html';
-  } else {
-    alert('No condition selected!');
-  }
+      //   if (localStorage.getItem('name')) {
+      //     document.getElementById('name').innerHTML = 'Name: ' + localStorage.getItem('name');
+      //   }
+      //   if (localStorage.getItem('bday')) {
+      //     document.getElementById('bday').innerHTML = 'Birthday: ' + localStorage.getItem('bday');
+      //   }
+      //   if (localStorage.getItem('gender')) {
+      //     var gender = localStorage.getItem('gender') + '';
+      //     document.getElementById('gender').innerHTML = 'Gender: ' + gender.charAt(0).toUpperCase() + gender.slice(1);
+      //   }
+      //   if (localStorage.getItem('email')) {
+      //     document.getElementById('email').innerHTML = 'Email: ' + localStorage.getItem('email');
+      //   }
+
+      //   if (localStorage.getItem('addConditions')) {
+      //     console.log("LocalStorage: ", localStorage.getItem('addConditions'));
+      //     var conditions = (localStorage.getItem('addConditions') + '').split(',');
+      //     console.log(conditions);
+      //     for (var i = 0; i < conditions.length; i++) {
+      //       console.log(conditions[i]);
+      //       var $cond = $('<li/>', {
+      //     }).text(conditions[i]);
+      //     $('#my-conditions').append($cond);
+      //     }
+      //   }
+
+      // });
 }
 
 $('#overview').click(function(){
