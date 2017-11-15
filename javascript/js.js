@@ -133,10 +133,9 @@ function getConditions() {
       users[userIndex].conditions = conditions;
       localStorage.setItem('users', JSON.stringify(users));
     }
-    window.location.href = './dashboard.html';
-  } else {
-    alert('No condition selected!');
   }
+  window.location.href = './dashboard.html';
+
 }
 
 function renderConditions() {
