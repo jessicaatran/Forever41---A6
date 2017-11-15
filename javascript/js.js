@@ -1,16 +1,25 @@
 var users;
 var userIndex;
+
 var newUser = true;
 
 var selectedUser;
-
+console.log('Start of js file.');
 if (localStorage.getItem('users') === null) {
-  console.log('empty: ' + JSON.stringify(localStorage));
+  console.log('localStorage.users is empty: ' + JSON.stringify(localStorage));
   users = [];
 } else {
   users = JSON.parse(localStorage.getItem('users'));
-  console.log('hi, not empty:' + JSON.stringify(localStorage));
+  console.log('localStorage.users is not empty:' + JSON.stringify(localStorage));
 }
+
+if (localStorage.getItem('userIndex') === null) {
+  localStorage.setItem('userIndex', -1);
+  console.log('localStorage.userIndex is empty, setting to -1: ' + JSON.stringify(localStorage));
+}
+
+userIndex = localStorage.getItem('userIndex');
+
 
 function userLogin() {
   var email = document.getElementById('loginEmail').value;
@@ -21,11 +30,14 @@ function userLogin() {
 
   for (var i = 0; i < allUsers.length; i++) {
     if (allUsers[i].email === email && allUsers[i].password === pass) {
-      selectedUser = allUsers[i];
-      alert('The selected user is: ' + JSON.stringify(selectedUser));
+      localStorage.setItem('userIndex', i);
+      userIndex = localStorage.getItem('userIndex');
+      alert('The selected user is at index = ' + i + ': ' + JSON.stringify(users[userIndex]));
       window.location.href = './dashboard.html';
-    }
+      return;
+    } 
   }
+  alert('Invalid login! Try again..');
 }
 
 // alert('users: ' + JSON.stringify(users));
@@ -50,19 +62,20 @@ function getName() {
   // alert('users: ' + JSON.stringify(users));
   users.push(person);
   localStorage.setItem('users', JSON.stringify(users));
-  console.log('localStorage: ' + localStorage);
+  console.log('localStorage: ' + JSON.stringify(localStorage));
 
   // If new user
-  selectedUser = users[users.length - 1];
-  alert('New user! Selected user is at users.length - 1: ' + JSON.stringify(selectedUser));
+  localStorage.setItem('userIndex', users.length - 1);
+  userIndex = localStorage.getItem('userIndex');
+  alert('New user! Selected user is at users.length - 1: ' + JSON.stringify(users[userIndex]));
   window.location.href = './join_email.html';
 }
 
 function getEmail() {
   var email = document.getElementById('userEmail').value;
   // alert(email);
-  console.log('the user', users[users.length - 1]);
-  users[users.length - 1].email = email;
+  console.log('the user', users[userIndex]);
+  users[userIndex].email = email;
   localStorage.setItem('users', JSON.stringify(users));
   window.location.href = './join_password.html';
 }
@@ -72,8 +85,8 @@ function getPassword() {
   var confirm = document.getElementById('userPass2').value;
   // alert('password: ' + password);
   if (password === confirm) {
-    console.log('the user', users[users.length - 1]);
-    users[users.length - 1].password = password;
+    console.log('the user', users[userIndex]);
+    users[userIndex].password = password;
     localStorage.setItem('users', JSON.stringify(users));
     window.location.href = './join_gender.html';
   } else {
@@ -84,8 +97,8 @@ function getPassword() {
 function getGender() {
   var gender = document.getElementById('gender').value;
   // alert(gender);
-  console.log('the user', users[users.length - 1]);
-  users[users.length - 1].gender = gender;
+  console.log('the user', users[userIndex]);
+  users[userIndex].gender = gender;
   localStorage.setItem('users', JSON.stringify(users));
   window.location.href = './join_birth.html';
 }
@@ -97,14 +110,17 @@ function getBirth() {
   var birthdate = month + "/" + day + "/" + year;
   // alert(birthdate);
 
-  console.log('the user', users[users.length - 1]);
-  users[users.length - 1].birthday = birthdate;
+  console.log('the user', users[userIndex]);
+  users[userIndex].birthday = birthdate;
   localStorage.setItem('users', JSON.stringify(users));
   window.location.href = './join_profilepic.html';
 }
 
 function renderConditions() {
-  var conditions = users[users.length - 1].conditions;
+  console.log('renderConditions()');
+  console.log('userIndex: ' + userIndex);
+  console.log('users[userIndex]: ' + JSON.stringify(users[userIndex]));
+  var conditions = users[userIndex].conditions;
 
   if (conditions) {
     for (var i = 0; i < conditions.length; i++) {
@@ -168,7 +184,7 @@ function getConditions() {
   var selectedCondition = $('#select2-conditions').val() + '';
 
   if (selectedCondition && (selectedCondition.length !== 0)) {
-    var conditions = users[users.length - 1].conditions;
+    var conditions = users[userIndex].conditions;
     alert("conditions: " + conditions);
 
     if (conditions === null || conditions.length === 0) {
@@ -177,7 +193,7 @@ function getConditions() {
       alert(selectedCondition);
       alert(selectedCondition.split(","));
 
-      users[users.length - 1].conditions = selectedCondition.split(",");
+      users[userIndex].conditions = selectedCondition.split(",");
       localStorage.setItem('users', JSON.stringify(users));
     }
     else {
@@ -193,11 +209,11 @@ function getConditions() {
 
       alert("Conditionssss: " + conditions);
 
-      users[users.length - 1].conditions = conditions;
+      users[userIndex].conditions = conditions;
 
       alert(JSON.stringify(users));
       // localStorage.setItem('conditions', conditions);
-      // users[users.length - 1].conditions = conditions.split(",");
+      // users[userIndex].conditions = conditions.split(",");
       localStorage.setItem('users', JSON.stringify(users));
     }
     window.location.href = './dashboard.html';
