@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 
   </head>
-  <body>
+  <body id="dashboardBody">
     <!-- header -->
     <nav id="navbar" class="navbar">
       <span class="navbar-brand mb-0 h1">Forever 41</span>
@@ -21,14 +21,14 @@
     <br>
 
     <div class="media col-sm-2">
-      <img class="img-thumbnail align-self-center mr-3" src="./images/profile-placeholder.jpg" class="img-fluid rounded mx-auto d-block" alt="Responsive image">
+      <img id="profpic" class="img-thumbnail align-self-center mr-3" src="./images/profpic.jpg" class="img-fluid rounded mx-auto d-block" alt="Responsive image">
       <div class="media-body">
         <h5 class="mt-0" id="dashboardName">Your Name</h5>
       </div>
     </div>
     <br>
     <!-- Cards -->
-    <div class="cards col-xs-12">
+    <div id="cards" class="cards col-xs-12">
       <!-- Overview -->
       <!-- <div class="card text-center" id="overview">
         <div class="card-body">
