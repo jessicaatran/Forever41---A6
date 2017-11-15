@@ -35,7 +35,7 @@ function userLogin() {
       alert('The selected user is at index = ' + i + ': ' + JSON.stringify(users[userIndex]));
       window.location.href = './dashboard.html';
       return;
-    } 
+    }
   }
   alert('Invalid login! Try again..');
 }
@@ -181,6 +181,7 @@ function renderConditions() {
 }
   }
 
+
   $('#overview').click(function(){
     window.location.href = './overview.html';
   });
@@ -223,7 +224,7 @@ function renderConditions() {
 
   $('#Ulcers').click(function(){
     window.location.href = './ulcers.html';
-  }); 
+  });
 }
 
 function displayProfile() {
@@ -236,7 +237,7 @@ function displayProfile() {
 
     var myConditions = users[userIndex].conditions;
 
-    for (var i = 0; i < myConditions.length; i++) {      
+    for (var i = 0; i < myConditions.length; i++) {
       $("<li />").html(myConditions[i]).appendTo($('#my-conditions'));
     }
 
@@ -294,4 +295,3 @@ $('.fa-sign-out').click(function() {
   // console.log('clear local storage');
   // localStorage.clear();
 });
-
