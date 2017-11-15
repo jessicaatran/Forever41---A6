@@ -35,7 +35,7 @@ function userLogin() {
       alert('The selected user is at index = ' + i + ': ' + JSON.stringify(users[userIndex]));
       window.location.href = './dashboard.html';
       return;
-    } 
+    }
   }
   alert('Invalid login! Try again..');
 }
@@ -135,10 +135,11 @@ function renderConditions() {
     }
   }
 
+
   $('#overview').click(function(){
     window.location.href = './overview.html';
   });
-  
+
   $('#add').click(function(){
     window.location.href = './conditions.html';
   });
@@ -176,7 +177,7 @@ function renderConditions() {
     window.location.href = './ulcers.html';
   });
 
-   
+
 }
 
 // TODO: change this to use only userIndex
