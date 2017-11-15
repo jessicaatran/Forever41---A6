@@ -32,7 +32,7 @@ function userLogin() {
     if (allUsers[i].email === email && allUsers[i].password === pass) {
       localStorage.setItem('userIndex', i);
       userIndex = localStorage.getItem('userIndex');
-      alert('The selected user is at index = ' + i + ': ' + JSON.stringify(users[userIndex]));
+      // alert('The selected user is at index = ' + i + ': ' + JSON.stringify(users[userIndex]));
       window.location.href = './dashboard.html';
       return;
     }
@@ -67,7 +67,7 @@ function getName() {
   // If new user
   localStorage.setItem('userIndex', users.length - 1);
   userIndex = localStorage.getItem('userIndex');
-  alert('New user! Selected user is at users.length - 1: ' + JSON.stringify(users[userIndex]));
+  // alert('New user! Selected user is at users.length - 1: ' + JSON.stringify(users[userIndex]));
   window.location.href = './join_email.html';
 }
 
@@ -122,33 +122,33 @@ function getConditions() {
 
   if (selectedCondition && (selectedCondition.length !== 0)) {
     var conditions = users[userIndex].conditions;
-    alert("conditions: " + conditions);
+    // alert("conditions: " + conditions);
 
     if (conditions === null || conditions.length === 0) {
       // localStorage.setItem('conditions', selectedCondition);
       // localStorage.setItem('users', conditions);
-      alert(selectedCondition);
-      alert(selectedCondition.split(","));
+      // alert(selectedCondition);
+      // alert(selectedCondition.split(","));
 
       users[userIndex].conditions = selectedCondition.split(",");
       localStorage.setItem('users', JSON.stringify(users));
     }
     else {
       // var conditions = localStorage.getItem('conditions') + ','+ selectedCondition;
-      alert("not null");
-      alert(selectedCondition);
-      alert(selectedCondition.split(","));
+      // alert("not null");
+      // alert(selectedCondition);
+      // alert(selectedCondition.split(","));
 
       selectedCondition.split(",").forEach(function(condition) {
         conditions.push(condition);
       });
       // conditions.push(selectedCondition.split(","));
 
-      alert("Conditionssss: " + conditions);
+      // alert("Conditionssss: " + conditions);
 
       users[userIndex].conditions = conditions;
 
-      alert(JSON.stringify(users));
+      // alert(JSON.stringify(users));
       // localStorage.setItem('conditions', conditions);
       // users[userIndex].conditions = conditions.split(",");
       localStorage.setItem('users', JSON.stringify(users));
@@ -163,18 +163,21 @@ function renderConditions() {
   console.log('renderConditions()');
   console.log('userIndex: ' + userIndex);
   console.log('users[userIndex]: ' + JSON.stringify(users[userIndex]));
-  var conditions = users[userIndex].conditions;
+  
+  if (users && users[userIndex]) {
+    var conditions = users[userIndex].conditions;
 
-  if (conditions) {
-    for (var i = 0; i < conditions.length; i++) {
-      console.log(conditions[i]);
-      var $div = $('<div/>', {
-        class: 'card text-center',
-        id: (conditions[i] + '').replace(/ /g, '-'),
-        rel: 'external',
+    if (conditions) {
+      for (var i = 0; i < conditions.length; i++) {
+        console.log(conditions[i]);
+        var $div = $('<div/>', {
+          class: 'card text-center',
+          id: (conditions[i] + '').replace(/ /g, '-'),
+          rel: 'external',
 
-      }).html('<div class="card text-center"><div class="card-body"><h4 class="card-title">' + conditions[i] + '</h4></div></div>');
-      $($div).insertBefore($('#add'));
+        }).html('<div class="card text-center"><div class="card-body"><h4 class="card-title">' + conditions[i] + '</h4></div></div>');
+        $($div).insertBefore($('#add'));
+      }
     }
   }
 
@@ -190,13 +193,20 @@ function renderConditions() {
   $('#Anemia').click(function(){
     window.location.href = './anemia.html';
   });
+  
   $('#Arthritis').click(function(){
     window.location.href = './arthritis.html';
   });
+  
   $('#Back-Pain').click(function(){
     window.location.href = './backpain.html';
   });
-  $('#Cholesterol').click(function(){
+
+  $('#High-Blood-Pressure').click(function(){
+    window.location.href = './highbp.html';
+  });
+
+  $('#High-Cholesterol').click(function(){
     window.location.href = './cholesterol.html';
   });
 
@@ -206,99 +216,31 @@ function renderConditions() {
 
   $('#Diabetes').click(function(){
     window.location.href = './diabetes.html';
-  });
+  }); 
 
   $('#Fatigue').click(function(){
     window.location.href = './fatigue.html';
-  });
-
-  $('#High-Blood-Pressure').click(function(){
-    window.location.href = './highbp.html';
-  });
+  }); 
 
   $('#Ulcers').click(function(){
     window.location.href = './ulcers.html';
   });
-
-
 }
 
 function displayProfile() {
-    console.log(localStorage);
-    console.log(users[userIndex].name);
-    document.getElementById('name').innerHTML = 'Name: ' + users[userIndex].name;
-    document.getElementById('bday').innerHTML = 'Birthday: ' + users[userIndex].birthday;
-    document.getElementById('gender').innerHTML = 'Gender: ' + users[userIndex].gender;
-    document.getElementById('email').innerHTML = 'Email: ' + users[userIndex].email;
+  console.log(localStorage);
+  console.log(users[userIndex].name);
+  document.getElementById('name').innerHTML = 'Name: ' + users[userIndex].name;
+  document.getElementById('bday').innerHTML = 'Birthday: ' + users[userIndex].birthday;
+  document.getElementById('gender').innerHTML = 'Gender: ' + users[userIndex].gender;
+  document.getElementById('email').innerHTML = 'Email: ' + users[userIndex].email;
 
-    var myConditions = users[userIndex].conditions;
+  var myConditions = users[userIndex].conditions;
 
-    for (var i = 0; i < myConditions.length; i++) {
-      $("<li />").html(myConditions[i]).appendTo($('#my-conditions'));
-    }
-
-
-
-
-      //   if (localStorage.getItem('name')) {
-      //     document.getElementById('name').innerHTML = 'Name: ' + localStorage.getItem('name');
-      //   }
-      //   if (localStorage.getItem('bday')) {
-      //     document.getElementById('bday').innerHTML = 'Birthday: ' + localStorage.getItem('bday');
-      //   }
-      //   if (localStorage.getItem('gender')) {
-      //     var gender = localStorage.getItem('gender') + '';
-      //     document.getElementById('gender').innerHTML = 'Gender: ' + gender.charAt(0).toUpperCase() + gender.slice(1);
-      //   }
-      //   if (localStorage.getItem('email')) {
-      //     document.getElementById('email').innerHTML = 'Email: ' + localStorage.getItem('email');
-      //   }
-
-      //   if (localStorage.getItem('addConditions')) {
-      //     console.log("LocalStorage: ", localStorage.getItem('addConditions'));
-      //     var conditions = (localStorage.getItem('addConditions') + '').split(',');
-      //     console.log(conditions);
-      //     for (var i = 0; i < conditions.length; i++) {
-      //       console.log(conditions[i]);
-      //       var $cond = $('<li/>', {
-      //     }).text(conditions[i]);
-      //     $('#my-conditions').append($cond);
-      //     }
-      //   }
-
-      // });
-}
-
-$('#overview').click(function(){
-  window.location.href = './overview.html';
-});
-$('#add').click(function(){
-  window.location.href = './conditions.html';
-});
-$('#High-Blood-Pressure').click(function(){
-  window.location.href = './highbp.html';
-});
-$('#Diabetes').click(function(){
-  window.location.href = './diabetes.html';
-});
-$('#Anemia').click(function(){
-  window.location.href = './anemia.html';
-});
-$('#Back-Pain').click(function(){
-  window.location.href = './backpain.html';
-});
-$('#Cholesterol').click(function(){
-  window.location.href = './cholesterol.html';
-});
-$('#Dementia').click(function(){
-  window.location.href = './dementia.html';
-});
-$('#Fatigue').click(function(){
-  window.location.href = './faigue.html';
-});
-$('#Ulcers').click(function(){
-  window.location.href = './ulcers.html';
-});
+  for (var i = 0; i < myConditions.length; i++) {
+    $("<li />").html(myConditions[i]).appendTo($('#my-conditions'));
+  }
+} 
 
 $('#back-join').click(function(){
   window.history.back();
