@@ -123,7 +123,7 @@ function getConditions() {
     var conditions = users[userIndex].conditions;
 
     if (conditions === null || conditions.length === 0) {
-      users[userIndex].conditions = selectedC-ondition.split(",");
+      users[userIndex].conditions = selectedCondition.split(",");
       localStorage.setItem('users', JSON.stringify(users));
     }
     else {
@@ -133,10 +133,8 @@ function getConditions() {
       users[userIndex].conditions = conditions;
       localStorage.setItem('users', JSON.stringify(users));
     }
-    window.location.href = './dashboard.html';
-  } else {
-    alert('No condition selected!');
   }
+  window.location.href = './dashboard.html';
 }
 
 function renderConditions() {
