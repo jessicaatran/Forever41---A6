@@ -113,7 +113,7 @@ function getBirth() {
   console.log('the user', users[userIndex]);
   users[userIndex].birthday = birthdate;
   localStorage.setItem('users', JSON.stringify(users));
-  window.location.href = './join_profilepic.html';
+  window.location.href = './select_conditions.html';
 }
 
 function getConditions() {
@@ -143,7 +143,7 @@ function renderConditions() {
   console.log('renderConditions()');
   console.log('userIndex: ' + userIndex);
   console.log('users[userIndex]: ' + JSON.stringify(users[userIndex]));
-  
+
   if (users && users[userIndex]) {
     var conditions = users[userIndex].conditions;
 
@@ -173,11 +173,11 @@ function renderConditions() {
   $('#Anemia').click(function(){
     window.location.href = './anemia.html';
   });
-  
+
   $('#Arthritis').click(function(){
     window.location.href = './arthritis.html';
   });
-  
+
   $('#Back-Pain').click(function(){
     window.location.href = './backpain.html';
   });
@@ -196,11 +196,11 @@ function renderConditions() {
 
   $('#Diabetes').click(function(){
     window.location.href = './diabetes.html';
-  }); 
+  });
 
   $('#Fatigue').click(function(){
     window.location.href = './fatigue.html';
-  }); 
+  });
 
   $('#Ulcers').click(function(){
     window.location.href = './ulcers.html';
@@ -234,7 +234,7 @@ function editConditions() {
       $('#select2-edit-conditions').val(conditions);
       $('#select2-edit-conditions').trigger('change');
     }
-  } 
+  }
 }
 
 function saveEditConditions() {
