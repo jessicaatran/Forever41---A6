@@ -273,7 +273,6 @@ $('#setting').click(function(){
 
 $('#help').click(function(){
   window.location.href = './help.html';
-  // localStorage.clear();
 });
 
 $('.fa-sign-out').click(function() {
