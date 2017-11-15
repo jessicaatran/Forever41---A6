@@ -116,41 +116,21 @@ function getBirth() {
   window.location.href = './join_profilepic.html';
 }
 
-// TODO: change this to use only userIndex
 function getConditions() {
   var selectedCondition = $('#select2-conditions').val() + '';
 
   if (selectedCondition && (selectedCondition.length !== 0)) {
     var conditions = users[userIndex].conditions;
-    // alert("conditions: " + conditions);
 
     if (conditions === null || conditions.length === 0) {
-      // localStorage.setItem('conditions', selectedCondition);
-      // localStorage.setItem('users', conditions);
-      // alert(selectedCondition);
-      // alert(selectedCondition.split(","));
-
       users[userIndex].conditions = selectedCondition.split(",");
       localStorage.setItem('users', JSON.stringify(users));
     }
     else {
-      // var conditions = localStorage.getItem('conditions') + ','+ selectedCondition;
-      // alert("not null");
-      // alert(selectedCondition);
-      // alert(selectedCondition.split(","));
-
       selectedCondition.split(",").forEach(function(condition) {
         conditions.push(condition);
       });
-      // conditions.push(selectedCondition.split(","));
-
-      // alert("Conditionssss: " + conditions);
-
       users[userIndex].conditions = conditions;
-
-      // alert(JSON.stringify(users));
-      // localStorage.setItem('conditions', conditions);
-      // users[userIndex].conditions = conditions.split(",");
       localStorage.setItem('users', JSON.stringify(users));
     }
     window.location.href = './dashboard.html';
@@ -240,7 +220,37 @@ function displayProfile() {
   for (var i = 0; i < myConditions.length; i++) {
     $("<li />").html(myConditions[i]).appendTo($('#my-conditions'));
   }
-} 
+}
+
+function editConditions() {
+  console.log('hello');
+  // $('.select2-multiple').select2();
+  $('#select2-edit-conditions').select2();
+
+  if (users && users[userIndex]) {
+    var conditions = users[userIndex].conditions;
+    if (conditions) {
+      console.log(conditions);
+      $('#select2-edit-conditions').val(conditions);
+      $('#select2-edit-conditions').trigger('change');
+    }
+  } 
+}
+
+function saveEditConditions() {
+  var editConditions = $('#select2-edit-conditions').val() + '';
+
+  var conditions = [];
+  if (editConditions) {
+    editConditions.split(",").forEach(function(condition) {
+      conditions.push(condition);
+    });
+  }
+  users[userIndex].conditions = conditions;
+  localStorage.setItem('users', JSON.stringify(users));
+  window.location.href = './dashboard.html';
+
+}
 
 $('#back-join').click(function(){
   window.history.back();
