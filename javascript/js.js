@@ -123,7 +123,7 @@ function getConditions() {
     var conditions = users[userIndex].conditions;
 
     if (conditions === null || conditions.length === 0) {
-      users[userIndex].conditions = selectedCondition.split(",");
+      users[userIndex].conditions = selectedC-ondition.split(",");
       localStorage.setItem('users', JSON.stringify(users));
     }
     else {
@@ -133,9 +133,10 @@ function getConditions() {
       users[userIndex].conditions = conditions;
       localStorage.setItem('users', JSON.stringify(users));
     }
+    window.location.href = './dashboard.html';
+  } else {
+    alert('No condition selected!');
   }
-  window.location.href = './dashboard.html';
-
 }
 
 function renderConditions() {
@@ -265,7 +266,7 @@ $('#setting').click(function(){
 
 $('#help').click(function(){
   window.location.href = './help.html';
-  localStorage.clear();
+  // localStorage.clear();
 });
 
 $('.fa-sign-out').click(function() {
