@@ -220,6 +220,15 @@ function displayProfile() {
   }
 }
 
+function displayConditionsOnEdit() {
+  var myConditions = users[userIndex].conditions;
+  console.log(myConditions);
+
+  for (var i = 0; i < myConditions.length; i++) {
+    $("<li />").html(myConditions[i]).appendTo($('#edit-profile-conditions-list'));
+  }
+}
+
 function editConditions() {
   console.log('hello');
   // $('.select2-multiple').select2();

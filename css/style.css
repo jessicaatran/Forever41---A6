@@ -56,3 +56,9 @@ body {
   width: 75%;
   /*height: 250px;*/
 }
+
+#editname, #saveChanges, #editEmail {
+  /*border: 1px;*/
+  border-width: 1px;
+  border-color: dark-grey;
+}
