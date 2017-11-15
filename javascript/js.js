@@ -163,25 +163,28 @@ function renderConditions() {
   console.log('renderConditions()');
   console.log('userIndex: ' + userIndex);
   console.log('users[userIndex]: ' + JSON.stringify(users[userIndex]));
-  var conditions = users[userIndex].conditions;
+  
+  if (users && users[userIndex]) {
+    var conditions = users[userIndex].conditions;
 
-  if (conditions) {
-    for (var i = 0; i < conditions.length; i++) {
-      console.log(conditions[i]);
-      var $div = $('<div/>', {
-        class: 'card text-center',
-        id: (conditions[i] + '').replace(/ /g, '-'),
-        rel: 'external',
+    if (conditions) {
+      for (var i = 0; i < conditions.length; i++) {
+        console.log(conditions[i]);
+        var $div = $('<div/>', {
+          class: 'card text-center',
+          id: (conditions[i] + '').replace(/ /g, '-'),
+          rel: 'external',
 
-      }).html('<div class="card text-center"><div class="card-body"><h4 class="card-title">' + conditions[i] + '</h4></div></div>');
-      $($div).insertBefore($('#add'));
-    }
+        }).html('<div class="card text-center"><div class="card-body"><h4 class="card-title">' + conditions[i] + '</h4></div></div>');
+        $($div).insertBefore($('#add'));
+      }
+}
   }
 
   $('#overview').click(function(){
     window.location.href = './overview.html';
   });
-  
+
   $('#add').click(function(){
     window.location.href = './conditions.html';
   });
@@ -189,13 +192,20 @@ function renderConditions() {
   $('#Anemia').click(function(){
     window.location.href = './anemia.html';
   });
+  
   $('#Arthritis').click(function(){
     window.location.href = './arthritis.html';
   });
+  
   $('#Back-Pain').click(function(){
     window.location.href = './backpain.html';
   });
-  $('#Cholesterol').click(function(){
+
+  $('#High-Blood-Pressure').click(function(){
+    window.location.href = './highbp.html';
+  });
+
+  $('#High-Cholesterol').click(function(){
     window.location.href = './cholesterol.html';
   });
 
@@ -205,19 +215,15 @@ function renderConditions() {
 
   $('#Diabetes').click(function(){
     window.location.href = './diabetes.html';
-  });
+  }); 
 
   $('#Fatigue').click(function(){
     window.location.href = './fatigue.html';
-  });
-
-  $('#High-Blood-Pressure').click(function(){
-    window.location.href = './highbp.html';
-  });
+  }); 
 
   $('#Ulcers').click(function(){
     window.location.href = './ulcers.html';
-  });  
+  }); 
 }
 
 function displayProfile() {
@@ -264,38 +270,7 @@ function displayProfile() {
       //   }
 
       // });
-}
-
-$('#overview').click(function(){
-  window.location.href = './overview.html';
-});
-$('#add').click(function(){
-  window.location.href = './conditions.html';
-});
-$('#High-Blood-Pressure').click(function(){
-  window.location.href = './highbp.html';
-});
-$('#Diabetes').click(function(){
-  window.location.href = './diabetes.html';
-});
-$('#Anemia').click(function(){
-  window.location.href = './anemia.html';
-});
-$('#Back-Pain').click(function(){
-  window.location.href = './backpain.html';
-});
-$('#Cholesterol').click(function(){
-  window.location.href = './cholesterol.html';
-});
-$('#Dementia').click(function(){
-  window.location.href = './dementia.html';
-});
-$('#Fatigue').click(function(){
-  window.location.href = './faigue.html';
-});
-$('#Ulcers').click(function(){
-  window.location.href = './ulcers.html';
-});
+} 
 
 $('#back-join').click(function(){
   window.history.back();
